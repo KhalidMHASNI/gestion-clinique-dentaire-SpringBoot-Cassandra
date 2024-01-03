@@ -4,8 +4,9 @@
 
 This version of cassandra only works on Java8 and Python2, so let's see how to set it up:
  
-1. Download Java8 : https://adoptium.net/fr/temurin/archive/?version=8
-2. Download Python2 : https://www.python.org/ftp/python/2.0/BeOpen-Python-2.0.exe
+1. Download Java : [![Java8](https://img.shields.io/badge/Java-jdk8-007396.svg)](https://adoptium.net/fr/temurin/archive/?version=8)
+2. Download Python : [![Python2](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/ftp/python/2.0/BeOpen-Python-2.0.exe)
+
 
 After downloading and installing these versions, you'll have to make sure they're a Path variables : 
 
