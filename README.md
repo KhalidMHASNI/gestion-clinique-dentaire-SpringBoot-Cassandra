@@ -67,3 +67,42 @@ Firstly, we're going to create a springboot application in **https://start.sprin
 
 ![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/998662ce-e6c4-4bc4-a02b-d17ae2682b46)
 
+After this we're going to make the architecture like so : 
+
+    ├───main
+    │   ├───java
+    │   │   └───org
+    │   │       └───sid
+    │   │           └───cabinet_medical_bigdata
+    │   │               │   CabinetMedicalBigdataApplication
+    │   │               │   
+    │   │               ├───controller
+    │   │               │       PatientController.java
+    │   │               │       DoctorController.java
+    │   │               │       AppointmentController.java
+    │   │               │       MedicalRecordController.java
+    │   │               │       
+    │   │               ├───entities
+    │   │               │       Patient.java
+    │   │               │       Doctor.java
+    │   │               │       Appointment.java
+    │   │               │       MedicalRecord.java
+    │   │               │       
+    │   │               ├───repository
+    │   │               │       DoctorRepository.java
+    │   │               │       PatientRepository.java
+    │   │               │       
+    │   │                           
+    │   └───resources
+    │       │   application.properties
+    │       │   
+    │       │       
+    │               
+    └───test
+        └───java
+            └───org
+                └───sid
+                    └───cabinet_medical_bigdata
+                            cabinet_medical_bigdataApplicationTests.java
+                            
+After setting up these architectures in both Cassandra Database and SpringBoot Application, the app would run smoothly with all the feature and controllers added.
