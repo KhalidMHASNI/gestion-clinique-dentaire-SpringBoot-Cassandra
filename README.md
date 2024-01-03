@@ -24,11 +24,6 @@ and then in another terminal, run :<br>
 ![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/24f4f4e8-a4c6-45ea-8098-5e75f880817d)
 
 
-
-| ![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/60c7eb6d-9e3d-49e7-acd3-90c2f9bfefe1) **Now you can download Cassandra (3.11.10) (this specific version worked for me) from this link : https://archive.apache.org/dist/cassandra/3.11.10/** | ![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/24f4f4e8-a4c6-45ea-8098-5e75f880817d) **CMDC:\Cassandrat\apache-cassandra-3.11.10\bin>cassandraand then in another terminal, run : C:\Cassandrat\apache-cassandra-3.11.10\bin>python2 -m cqlsh** | 
-| --- | --- |
-
-
 **-> Cassandra (3.11.10) is now succefully setup in you Windows machine**
 
 ## 2. Setting up SpringBoot and linking it with Cassandra :
