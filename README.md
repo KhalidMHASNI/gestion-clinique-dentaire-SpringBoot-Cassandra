@@ -105,4 +105,8 @@ After this we're going to make the architecture like so :
                     └───cabinet_medical_bigdata
                             cabinet_medical_bigdataApplicationTests.java
                             
-After setting up these architectures in both Cassandra Database and SpringBoot Application, the app would run smoothly with all the feature and controllers added.
+After setting up these architectures in both Cassandra Database and SpringBoot Application, the app would run smoothly with all the feature and controllers added (CRUD for every table and every type).
+
+## 3. Linking the springBoot application with Angular (FE framework)
+
+## 4. Test d'application
