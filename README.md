@@ -1,6 +1,6 @@
 # gestion-clinique-dentaire-SpringBoot-Cassandra
 
-## 1. Setupping Cassandra (3.11.10) on Windows(10 and 11) :
+## 1. Setting up Cassandra (3.11.10) on Windows(10 and 11) :
 
 This version of cassandra only works on Java8 and Python2, so let's see how to set it up:
  
@@ -23,4 +23,6 @@ and then in another terminal, run :<br>
   ```C:\Cassandrat\apache-cassandra-3.11.10\bin>python2 -m cqlsh```
 ![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/24f4f4e8-a4c6-45ea-8098-5e75f880817d)
 
-**-> Cassandra (3.11.10) is now succefully setuped in you Windows machine**
+**-> Cassandra (3.11.10) is now succefully setup in you Windows machine**
+
+## 2. Setting up SpringBoot and linking it with Cassandra :
