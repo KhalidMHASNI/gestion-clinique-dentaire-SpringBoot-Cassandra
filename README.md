@@ -21,10 +21,44 @@ After that You can run **Cassandra** on your Windows machine succesfully, by fol
 1. Go to the directory of Cassandra (extracted) and go to the Bin (apache-cassandra-3.11.10\bin\) directory then run these commands using **CMD** :<br>
   ```C:\Cassandrat\apache-cassandra-3.11.10\bin>cassandra```<br>
 and then in another terminal, run :<br>
-  ```C:\Cassandrat\apache-cassandra-3.11.10\bin>python2 -m cqlsh```
+  ```C:\Cassandrat\apache-cassandra-3.11.10\bin>python2 -m cqlsh```<br>
 ![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/24f4f4e8-a4c6-45ea-8098-5e75f880817d)
 
 
 **-> Cassandra (3.11.10) is now succefully setup in you Windows machine**
 
 ## 2. Setting up SpringBoot and linking it with Cassandra :
+
+### a- Setting up the keyspace and tables of the project :
+
+Firstly, We're going to create the Keyspace we're going to work with named **cabinet_medical**, that has 2 types and 2 tables :
+
+  * medical_record Type
+  * appointment Type
+  * doctors Table
+  * patients Table
+    
+For more details check **cassDB.txt** that has more information about the types and tables as well as some isertions for testing
+
+### b- Linking the springboot application with the cassandra keyspace :
+Firstly, we're going to create a springboot application in **https://start.spring.io/** with these caracteristics :
+* Project Name: cabinet_medical_bigdata
+* Version: 0.0.1-SNAPSHOT
+* Description: A Spring Boot project for a medical cabinet handling big data.
+* Java Version: 17
+* Dependencies:
+    * Spring Boot 3.2.1
+    * Spring Boot Starter
+    * Spring Boot Starter Web
+    * Spring Boot Starter Test
+    * Spring Web 6.1.2
+    * Spring Data Cassandra 4.2.1
+    * Spring Data REST Core 4.2.1
+    * Spring Data REST WebMVC 4.2.1
+    * Lombok 1.18.30
+    * Jakarta Persistence API 2.2.3 & 3.1.0
+    * Eclipse Persistence Core 4.0.0
+    * DataStax Java Driver Core 4.17.0 & Query Builder 4.17.0
+    * Cassandra Driver Core 3.4.0
+
+ After that we're going to add a configuration file (CassandraConfig.java), this class serves as a Spring configuration class responsible for setting up necessary configurations and beans required for integrating Cassandra with the Spring application. 
