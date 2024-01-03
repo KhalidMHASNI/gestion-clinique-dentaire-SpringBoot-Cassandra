@@ -37,8 +37,10 @@ Firstly, We're going to create the Keyspace we're going to work with named **cab
   * appointment Type
   * doctors Table
   * patients Table
+
+![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/bb7700fe-3005-4721-9e5d-546de41712d3)
     
-For more details check **cassDB.txt** that has more information about the types and tables as well as some isertions for testing
+For more details check **cassDB_Queries.txt** that has more information about the types and tables as well as some isertions for testing
 
 ### b- Linking the springboot application with the cassandra keyspace :
 Firstly, we're going to create a springboot application in **https://start.spring.io/** with these caracteristics :
@@ -62,3 +64,6 @@ Firstly, we're going to create a springboot application in **https://start.sprin
     * Cassandra Driver Core 3.4.0
 
  After that we're going to add a configuration file (CassandraConfig.java), this class serves as a Spring configuration class responsible for setting up necessary configurations and beans required for integrating Cassandra with the Spring application. 
+
+![image](https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/998662ce-e6c4-4bc4-a02b-d17ae2682b46)
+
