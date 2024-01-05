@@ -36,7 +36,7 @@ CREATE TABLE patients (
 INSERT INTO doctors (doctor_id, name, specialization, contact_information, appointments)
 VALUES (
     1,
-    'Dr. Hassan Lbertkazi',
+    'Dr. Hassan Bennani',
     'Dentist',
     '+212 66013281695',
     {
@@ -48,8 +48,8 @@ VALUES (
 INSERT INTO doctors (doctor_id, name, specialization, contact_information, appointments)
 VALUES (
     2,
-    'Dr. Noura Sqili',
-    'Dentiste',
+    'Dr. Noura Skalli',
+    'Orthodontist',
     '+212 77712354690',
     {
         1: { appointment_id: 1, doctor_id: 2, appointment_date: '2024-01-03 11:00:00', patient_id: 3, reason_for_visit: 'Mal aux dents' }
