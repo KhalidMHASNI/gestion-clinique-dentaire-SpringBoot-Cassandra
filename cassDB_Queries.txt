@@ -32,7 +32,9 @@ CREATE TABLE patients (
 );
 
 
--- Hardcoded timestamps for appointments and medical records
+-- Hardcoded timestamps for dental appointments and medical records
+
+-- Inserting Dentists
 INSERT INTO doctors (doctor_id, name, specialization, contact_information, appointments)
 VALUES (
     1,
@@ -40,11 +42,12 @@ VALUES (
     'Dentist',
     '+212 66013281695',
     {
-        1: { appointment_id: 1, doctor_id: 1, appointment_date: '2024-01-01 09:00:00', patient_id: 1, reason_for_visit: 'controle regulier' },
-        3: { appointment_id: 3, doctor_id: 1, appointment_date: '2024-01-01 10:00:00', patient_id: 2, reason_for_visit: 'Mal aux dents' }
+        1: { appointment_id: 1, doctor_id: 1, appointment_date: '2024-01-01 09:00:00', patient_id: 1, reason_for_visit: 'Regular checkup' },
+        3: { appointment_id: 3, doctor_id: 1, appointment_date: '2024-01-01 10:00:00', patient_id: 2, reason_for_visit: 'Toothache' }
     }
 );
 
+-- Inserting Orthodontist
 INSERT INTO doctors (doctor_id, name, specialization, contact_information, appointments)
 VALUES (
     2,
@@ -52,10 +55,11 @@ VALUES (
     'Orthodontist',
     '+212 77712354690',
     {
-        1: { appointment_id: 1, doctor_id: 2, appointment_date: '2024-01-03 11:00:00', patient_id: 3, reason_for_visit: 'Mal aux dents' }
+        1: { appointment_id: 1, doctor_id: 2, appointment_date: '2024-01-03 11:00:00', patient_id: 3, reason_for_visit: 'Braces checkup' }
     }
 );
 
+-- Inserting Patients
 INSERT INTO patients (patient_id, name, date_of_birth, contact_number, doctor_id, medical_records, appointments)
 VALUES (
     1,
@@ -64,10 +68,10 @@ VALUES (
     '+212 66013266944',
     1,
     {
-        1: { medical_record_id: 1, diagnosis: 'dent fracturee', prescriptions: ['Cicamed', 'Dolyprane'], treatment_history: 'quelque dents fracturees vus dans le 15 Septembre 2023' }
+        1: { medical_record_id: 1, diagnosis: 'Fractured tooth', prescriptions: ['COdoliprane', 'Doliprane'], treatment_history: 'Fractured teeth observed on September 15, 2023' }
     },
     {
-        1: { appointment_id: 1, doctor_id: 1, appointment_date: '2024-01-10T09:00:00Z', patient_id: 1, reason_for_visit: 'Controle regulier' }
+        1: { appointment_id: 1, doctor_id: 1, appointment_date: '2024-01-10T09:00:00Z', patient_id: 1, reason_for_visit: 'Regular checkup' }
     }
 );
 
@@ -79,10 +83,10 @@ VALUES (
     '+212 652278511',
     1,
     {
-        1: { medical_record_id : 1 , diagnosis: 'Arrhythmia', prescriptions: ['Dollostop'], treatment_history: 'retablie' }
+        1: { medical_record_id : 1 , diagnosis: 'Toothache', prescriptions: ['Dollostop'], treatment_history: 'Recovered after dental treatment' }
     },
     {
-        2: { appointment_id: 2, doctor_id: 2, appointment_date: '2024-01-17T10:00:00Z', patient_id: 2, reason_for_visit: 'examination des dents' }
+        2: { appointment_id: 2, doctor_id: 2, appointment_date: '2024-01-17T10:00:00Z', patient_id: 2, reason_for_visit: 'Dental examination' }
     }
 );
 
@@ -94,9 +98,9 @@ VALUES (
     '+212 620351244',
     2,
     {
-        1: { medical_record_id : 1, diagnosis: 'Controle regulier', prescriptions: ['Dollyprane'], treatment_history: 'Rien' }
+        1: { medical_record_id : 1, diagnosis: 'Regular checkup', prescriptions: ['Doliprane'], treatment_history: 'No issues' }
     },
     {
-        3: { appointment_id: 3, doctor_id: 1, appointment_date: '2024-01-30T11:00:00Z', patient_id: 3, reason_for_visit: 'Controle regulier' }
+        3: { appointment_id: 3, doctor_id: 1, appointment_date: '2024-01-30T11:00:00Z', patient_id: 3, reason_for_visit: 'Regular checkup' }
     }
 );
