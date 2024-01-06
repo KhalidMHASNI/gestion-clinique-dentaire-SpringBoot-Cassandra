@@ -118,7 +118,7 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
 
     ng new Medical-webapp
 
-3.3 Generate component (Example: home)
+3.3 Generate components (Example: home)
 
     ng g c home 
 
