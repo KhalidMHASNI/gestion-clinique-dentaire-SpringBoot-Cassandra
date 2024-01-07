@@ -51,7 +51,7 @@ VALUES (
     '+212 66013281695',
     {
         1: { appointment_id: 1, doctor_id: 1, appointment_date: '2024-01-01 09:00:00', patient_id: 1, reason_for_visit: 'Regular checkup' },
-        3: { appointment_id: 2, doctor_id: 1, appointment_date: '2024-01-01 10:00:00', patient_id: 2, reason_for_visit: 'Toothache' }
+        2: { appointment_id: 2, doctor_id: 1, appointment_date: '2024-01-17T10:00:00Z', patient_id: 2, reason_for_visit: 'Toothache' }
     }
 );
 
@@ -63,7 +63,7 @@ VALUES (
     'Orthodontist',
     '+212 77712354690',
     {
-        1: { appointment_id: 3, doctor_id: 2, appointment_date: '2024-01-03 11:00:00', patient_id: 3, reason_for_visit: 'Braces checkup' }
+        3: { appointment_id: 3, doctor_id: 2, appointment_date: '2024-01-30T11:00:00Z', patient_id: 3, reason_for_visit: 'Braces checkup' }
     }
 );
 
@@ -79,7 +79,7 @@ VALUES (
         1: { medical_record_id: 1, diagnosis: 'Fractured tooth', prescriptions: ['COdoliprane', 'Doliprane'], treatment_history: 'Fractured teeth observed on September 15, 2023' }
     },
     {
-        1: { appointment_id: 4, doctor_id: 1, appointment_date: '2024-01-10T09:00:00Z', patient_id: 1, reason_for_visit: 'Regular checkup' }
+        1: { appointment_id: 1, doctor_id: 1, appointment_date: '2024-01-10T09:00:00Z', patient_id: 1, reason_for_visit: 'Regular checkup' }
     }
 );
 
@@ -94,7 +94,7 @@ VALUES (
         1: { medical_record_id : 2, diagnosis: 'Toothache', prescriptions: ['Dollostop'], treatment_history: 'Recovered after dental treatment' }
     },
     {
-        2: { appointment_id: 5, doctor_id: 2, appointment_date: '2024-01-17T10:00:00Z', patient_id: 2, reason_for_visit: 'Dental examination' }
+        2: { appointment_id: 2, doctor_id: 2, appointment_date: '2024-01-17T10:00:00Z', patient_id: 2, reason_for_visit: 'Toothache' }
     }
 );
 
@@ -109,6 +109,6 @@ VALUES (
         1: { medical_record_id : 3, diagnosis: 'Regular checkup', prescriptions: ['Doliprane'], treatment_history: 'No issues' }
     },
     {
-        3: { appointment_id: 6, doctor_id: 1, appointment_date: '2024-01-30T11:00:00Z', patient_id: 3, reason_for_visit: 'Regular checkup' }
+        3: { appointment_id: 3, doctor_id: 2, appointment_date: '2024-01-30T11:00:00Z', patient_id: 3, reason_for_visit: 'Braces checkup' }
     }
 );
