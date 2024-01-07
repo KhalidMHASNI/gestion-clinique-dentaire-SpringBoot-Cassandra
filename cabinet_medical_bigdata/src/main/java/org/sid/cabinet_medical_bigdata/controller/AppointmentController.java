@@ -176,9 +176,10 @@ public class AppointmentController {
             System.out.println(cql);
             session.execute(cql);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Medical record added successfully for patient with ID: " + patientId);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body("Appointment added successfully for patient with ID: " + patientId);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding medical record: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding Appointment: " + e.getMessage());
         }
     }
 
@@ -258,9 +259,9 @@ public class AppointmentController {
             System.out.println(appointmentUpdateQuery);
             session.execute(appointmentUpdateQuery);
 
-            return ResponseEntity.status(HttpStatus.OK).body("Medical record updated successfully for patient with ID: " + patientId);
+            return ResponseEntity.status(HttpStatus.OK).body("Appointment updated successfully for patient with ID: " + patientId);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating medical record: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating Appointment: " + e.getMessage());
         }
     }
 
@@ -289,9 +290,9 @@ public class AppointmentController {
             System.out.println(appointmentUpdateQuery);
             session.execute(appointmentUpdateQuery);
 
-            return ResponseEntity.status(HttpStatus.OK).body("Medical record updated successfully for patient with ID: " + doctorId);
+            return ResponseEntity.status(HttpStatus.OK).body("Appointment updated successfully for patient with ID: " + doctorId);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating medical record: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating Appointment : " + e.getMessage());
         }
     }
 

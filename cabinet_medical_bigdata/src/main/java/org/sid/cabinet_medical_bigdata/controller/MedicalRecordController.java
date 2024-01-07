@@ -186,15 +186,9 @@ public class MedicalRecordController {
         }
     }
 
-    @PutMapping("/medical-records/patient/{patientId}")
-    public ResponseEntity<String> updateMedicalRecordForPatient(@PathVariable int patientId, @RequestBody MedicalRecord medicalRecord) {
+    @PutMapping("/medical-records/patient/{patientId}/{medicalRecordId}")
+    public ResponseEntity<String> updateMedicalRecordForPatient(@PathVariable int patientId, @PathVariable int medicalRecordId, @RequestBody MedicalRecord medicalRecord) {
         try {
-            UserDefinedType medicalRecordType = session.getMetadata().getKeyspace("cabinet_medical").flatMap(ks -> ks.getUserDefinedType("medical_record")).orElseThrow();
-
-            UdtValue medicalRecordUdt = medicalRecordType.newValue()
-                    .setInt("medical_record_id", medicalRecord.getMedical_record_id())
-                    .setString("diagnosis", medicalRecord.getDiagnosis())
-                    .setString("treatment_history", medicalRecord.getTreatment_history());
             List<String> prescriptions = medicalRecord.getPrescriptions();
             String prescriptionsString = "";
             if (prescriptions != null) {
@@ -206,8 +200,8 @@ public class MedicalRecordController {
             String cql = String.format(
                             "UPDATE patients SET medical_records[%d] = " +
                             "{medical_record_id: %d, diagnosis: '%s', prescriptions: [%s], treatment_history: '%s'} WHERE patient_id = %d;",
-                    medicalRecord.getMedical_record_id(),
-                    medicalRecord.getMedical_record_id(),
+                    medicalRecordId,
+                    medicalRecordId,
                     medicalRecord.getDiagnosis(),
                     prescriptionsString,
                     medicalRecord.getTreatment_history(),

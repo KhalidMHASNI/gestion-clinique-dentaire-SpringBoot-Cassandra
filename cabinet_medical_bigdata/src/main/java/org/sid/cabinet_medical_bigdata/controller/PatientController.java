@@ -27,7 +27,11 @@ import java.util.Optional;
 public class PatientController {
     @Autowired
     private PatientRepository patientsRepository;
+    private final CqlSession session;
 
+    public PatientController(CqlSession session){
+        this.session  = session;
+    }
     @GetMapping("/patients")
     public List<Patient> getAllPatients() {
         return patientsRepository.findAll();
@@ -40,8 +44,25 @@ public class PatientController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    private int getLastpatientIdFromDatabase() {
+        ResultSet resultSet = session.execute("SELECT MAX(patient_id) AS patient_id FROM patients");
+
+        Row row = resultSet.one();
+        if (row != null) {
+            System.out.println(row.getInt("patient_id"));
+            return row.getInt("patient_id");
+        } else {
+            return 0;
+        }
+    }
+
     @PostMapping("/patients")
     public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
+        int lastId = getLastpatientIdFromDatabase();
+        int newId = lastId + 1;
+        System.out.print("last patient_id :");
+        System.out.println(newId);
+        patient.setPatientId(newId);
         Patient newPatient = patientsRepository.save(patient);
         return ResponseEntity.status(HttpStatus.CREATED).body(newPatient);
     }
