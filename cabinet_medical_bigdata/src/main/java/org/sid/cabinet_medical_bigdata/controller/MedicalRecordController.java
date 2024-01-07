@@ -7,7 +7,10 @@ import com.datastax.oss.driver.api.core.cql.ResultSet;
 import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.api.core.data.UdtValue;
 import com.datastax.oss.driver.api.core.type.UserDefinedType;
+import org.sid.cabinet_medical_bigdata.entities.Appointment;
 import org.sid.cabinet_medical_bigdata.entities.MedicalRecord;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MedicalRecordController {
 
     private final CqlSession session;
@@ -79,9 +83,45 @@ public class MedicalRecordController {
         return medicalRecords;
     }
 
+    @Bean
+    private int getNextMedicalRecordId(int patient_id) {
+        String cql = String.format("SELECT medicalRecords FROM patients WHERE patient_id = %s ALLOW FILTERING",patient_id);        ResultSet rs = session.execute(cql);
+        List<Appointment> appointments = new ArrayList<>();
+
+        for (Row row : rs) {
+            Map<Integer, UdtValue> appointmentsMap = row.getMap("medicalRecords", Integer.class, UdtValue.class);
+
+            assert appointmentsMap != null;
+            for (Map.Entry<Integer, UdtValue> entry : appointmentsMap.entrySet()) {
+                UdtValue appointmentUdt = entry.getValue();
+
+                Appointment appointment = new Appointment();
+                appointment.setAppointment_id(appointmentUdt.getInt("medical_record_id"));
+                // Set other appointment details accordingly
+                appointments.add(appointment);
+            }
+        }
+        int maxAppointmentId = 0;
+
+        if (!appointments.isEmpty()) {
+            for (Appointment appointment : appointments) {
+                int currentAppointmentId = appointment.getAppointment_id();
+                if (currentAppointmentId > maxAppointmentId) {
+                    maxAppointmentId = currentAppointmentId;
+                }
+            }
+        }
+System.out.println(maxAppointmentId);
+        return maxAppointmentId;
+    }
+
     @PostMapping("/medical-records/{patientId}")
     public ResponseEntity<String> addMedicalRecordForPatient(@PathVariable int patientId, @RequestBody MedicalRecord medicalRecord) {
+
         try {
+            int next_appo_id = 0;
+            next_appo_id = getNextMedicalRecordId(patientId)+1;
+
             UserDefinedType medicalRecordType = session.getMetadata().getKeyspace("cabinet_medical").flatMap(ks -> ks.getUserDefinedType("medical_record")).orElseThrow();
 
             UdtValue medicalRecordUdt = medicalRecordType.newValue()
@@ -98,12 +138,11 @@ public class MedicalRecordController {
                         .collect(Collectors.joining(","));
             }
 
-            System.out.println(prescriptions);
-            System.out.println(prescriptionsString);
+            System.out.println(next_appo_id);
             String cql = String.format(
                     "UPDATE patients SET medical_records = medical_records + {%d: {medical_record_id: %d, diagnosis: '%s', prescriptions: [%s], treatment_history: '%s'}} WHERE patient_id = %d",
-                    medicalRecord.getMedical_record_id(),
-                    medicalRecord.getMedical_record_id(),
+                    next_appo_id,
+                    next_appo_id,
                     medicalRecord.getDiagnosis(),
                     prescriptionsString,
                     medicalRecord.getTreatment_history(),

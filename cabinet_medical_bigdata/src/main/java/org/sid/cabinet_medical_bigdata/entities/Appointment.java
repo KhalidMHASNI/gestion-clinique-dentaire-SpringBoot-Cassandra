@@ -17,7 +17,6 @@ import java.sql.Timestamp;
 //@Entity
 public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int appointment_id;
     private int doctor_id;
     private Timestamp appointment_date;

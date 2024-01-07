@@ -1,3 +1,11 @@
+CREATE KEYSPACE IF NOT EXISTS cabinet_medical
+WITH replication = {
+   'class': 'SimpleStrategy',
+   'replication_factor': 1
+};
+
+USE cabinet_medical;
+
 CREATE TYPE medical_record (
     medical_record_id INT,
     diagnosis TEXT,

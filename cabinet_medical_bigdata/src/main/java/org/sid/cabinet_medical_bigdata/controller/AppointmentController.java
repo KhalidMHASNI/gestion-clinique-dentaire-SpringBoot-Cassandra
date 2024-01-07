@@ -5,6 +5,7 @@ import com.datastax.oss.driver.api.core.cql.ResultSet;
 import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.api.core.data.UdtValue;
 import org.sid.cabinet_medical_bigdata.entities.Appointment;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AppointmentController {
 
     private final CqlSession session;
@@ -108,6 +110,37 @@ public class AppointmentController {
         return appointments;
     }
 
+    private int getNextAppointmentId(int doctor_id) {
+        String cql = String.format("SELECT doctor_id, appointments FROM doctors WHERE doctor_id = %s ALLOW FILTERING",doctor_id);        ResultSet rs = session.execute(cql);
+        List<Appointment> appointments = new ArrayList<>();
+
+        for (Row row : rs) {
+            Map<Integer, UdtValue> appointmentsMap = row.getMap("appointments", Integer.class, UdtValue.class);
+
+            assert appointmentsMap != null;
+            for (Map.Entry<Integer, UdtValue> entry : appointmentsMap.entrySet()) {
+                UdtValue appointmentUdt = entry.getValue();
+
+                Appointment appointment = new Appointment();
+                appointment.setAppointment_id(appointmentUdt.getInt("appointment_id"));
+                // Set other appointment details accordingly
+                appointments.add(appointment);
+            }
+        }
+        int maxAppointmentId = 0;
+
+        if (!appointments.isEmpty()) {
+            for (Appointment appointment : appointments) {
+                int currentAppointmentId = appointment.getAppointment_id();
+                if (currentAppointmentId > maxAppointmentId) {
+                    maxAppointmentId = currentAppointmentId;
+                }
+            }
+        }
+
+        return maxAppointmentId;
+    }
+
 
     @PostMapping("appointments/patients/{patientId}/doctors/{doctorId}")
     public ResponseEntity<String> createAppointmentForPatientWithDoctor(
@@ -115,13 +148,15 @@ public class AppointmentController {
             @PathVariable int doctorId,
             @RequestBody Appointment appointmentRequest) {
         try {
+            int next_appo_id = 0;
+            next_appo_id = getNextAppointmentId(doctorId)+1;
             String cql = String.format(
                     "UPDATE patients SET appointments =  appointments + {%d: {appointment_id: %d, doctor_id: %d, appointment_date: '%s', patient_id:%d,  reason_for_visit: '%s'}} WHERE patient_id = %d",
-                    appointmentRequest.getAppointment_id(),
-                    appointmentRequest.getAppointment_id(),
+                    next_appo_id,
+                    next_appo_id,
                     doctorId,
                     appointmentRequest.getAppointment_date(),
-                    appointmentRequest.getPatient_id(),
+                    patientId,
                     appointmentRequest.getReason_for_visit(),
                     patientId
             );
@@ -130,11 +165,11 @@ public class AppointmentController {
             session.execute(cql);
             cql = String.format(
                     "UPDATE doctors SET appointments =  appointments + {%d: {appointment_id: %d, doctor_id: %d, appointment_date: '%s', patient_id:%d,  reason_for_visit: '%s'}} WHERE doctor_id = %d",
-                    appointmentRequest.getAppointment_id(),
-                    appointmentRequest.getAppointment_id(),
+                    next_appo_id,
+                    next_appo_id,
                     doctorId,
                     appointmentRequest.getAppointment_date(),
-                    appointmentRequest.getPatient_id(),
+                    patientId,
                     appointmentRequest.getReason_for_visit(),
                     doctorId
             );
