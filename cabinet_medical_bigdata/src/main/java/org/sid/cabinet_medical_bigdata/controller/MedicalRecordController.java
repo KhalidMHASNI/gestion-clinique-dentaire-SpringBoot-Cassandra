@@ -83,13 +83,12 @@ public class MedicalRecordController {
         return medicalRecords;
     }
 
-    @Bean
     private int getNextMedicalRecordId(int patient_id) {
-        String cql = String.format("SELECT medicalRecords FROM patients WHERE patient_id = %s ALLOW FILTERING",patient_id);        ResultSet rs = session.execute(cql);
+        ResultSet rs = session.execute("SELECT medical_records FROM patients WHERE patient_id = ?", patient_id);
         List<Appointment> appointments = new ArrayList<>();
 
         for (Row row : rs) {
-            Map<Integer, UdtValue> appointmentsMap = row.getMap("medicalRecords", Integer.class, UdtValue.class);
+            Map<Integer, UdtValue> appointmentsMap = row.getMap("medical_records", Integer.class, UdtValue.class);
 
             assert appointmentsMap != null;
             for (Map.Entry<Integer, UdtValue> entry : appointmentsMap.entrySet()) {
@@ -111,7 +110,7 @@ public class MedicalRecordController {
                 }
             }
         }
-System.out.println(maxAppointmentId);
+        System.out.println(maxAppointmentId);
         return maxAppointmentId;
     }
 
@@ -123,7 +122,6 @@ System.out.println(maxAppointmentId);
             next_appo_id = getNextMedicalRecordId(patientId)+1;
 
             UserDefinedType medicalRecordType = session.getMetadata().getKeyspace("cabinet_medical").flatMap(ks -> ks.getUserDefinedType("medical_record")).orElseThrow();
-
             UdtValue medicalRecordUdt = medicalRecordType.newValue()
                     .setInt("medical_record_id", medicalRecord.getMedical_record_id())
                     .setString("diagnosis", medicalRecord.getDiagnosis())
