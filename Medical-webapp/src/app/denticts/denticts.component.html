@@ -1,0 +1,64 @@
+<div class="page-banner-area ptb-100 four" style="background-image: url(assets/images/page-title4.jpg);">
+    <div class="container">
+        <div class="page-banner-content">
+            <h2>Book Appointment</h2>
+            <div class="pages-list">
+                <li>
+                    <a routerLink="/home">Home</a>
+                </li>
+                <li>
+                  Book Appointment
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ptb-100" *ngIf="doctors">
+    <div class="container">
+      <div class="row justify-content-center" style="display: flex; flex-wrap: wrap;">
+        <div *ngFor="let d of doctors" class="col-lg-4 col-md-6 col-sm-6">
+          <div class="single-doctor">
+            <a routerLink="/doctor-details" class="d-block">
+              <img src="assets/images/doctor-2.jpg">
+            </a>
+  
+            <div class="doctor-content">
+              <span class="sub-title">
+                <i style="color: #06a3da;" class='fa-solid fa-user-doctor'></i> 
+                &nbsp;  {{ d.specialization }} >> &nbsp;   <b>{{ d.name }}  </b>      
+              </span>
+              
+              <!-- Appointment Form -->
+              <div class="appointment-form " >
+                <span class="sub-title3">
+                  <i style="color: #06a3da;" class='bx bx-calendar'></i> 
+                  Book an Appointment
+                 </span>
+
+                <form class="covid-registration-form"  [formGroup]="newAppoForm" (ngSubmit)="saveNewAppointment(d.doctorId)">
+                  <div class="form-group">
+                    <input formControlName="patientId" type="number" placeholder="Patient ID" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <input formControlName="appointmentDate" type="date" placeholder="Date" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input formControlName="reasonForVisit" type="text" placeholder="Reason for visit" class="form-control" required>
+                  </div>
+                  <div class="share-link">
+                    <button type="submit" class="default-btn">Book Appointment</button>
+                  </div>
+                </form>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+

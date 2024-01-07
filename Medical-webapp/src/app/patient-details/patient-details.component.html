@@ -1,0 +1,76 @@
+<div class="page-banner-area ptb-100 four" style="background-image: url(assets/images/page-title5.jpg);">
+  <div class="container">
+      <div class="page-banner-content">
+          <h2>Patients Details</h2>
+          <div class="pages-list">
+              <li>
+                  <a routerLink="/home">Home</a>
+              </li>
+              <li>
+                  Patients/Patient Details
+              </li>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="dentist-details-area ptb-100" *ngIf="patients">
+  <div class="container" *ngFor="let p of patients; let i =index">
+    <div class="row align-items-center">
+      
+        <div class="dentist-details-image col-lg-4 col-md-12 " >
+          <h4 style="color: #06a3da;"><b>{{ p.name }}</b></h4>
+          <img [src]="'assets/images/patient-' + images[i] + '.jpg'" alt="Patient Image not found">
+          <!-- <img src="assets/images/patient-4.jpg"> -->
+
+      </div>
+
+        <div class=" col-lg-8 col-md-12 " >
+<div class="dentist-details-content">
+  <div class="content-overview">
+    <p>
+      <span style="color: #06a3da;"> <b> Medical Records: </b></span>
+  </p>
+      <p *ngFor="let record of getMedicalRecords(p.medicalRecords)">
+        <a ><i style="color: #06a3da;" class='fa-sharp fa-solid fa-tooth'></i></a>
+
+        <b> Diagnosis:</b>  {{ record.diagnosis }}, <br>
+        <a ><i style="color: #06a3da;" class='fa-solid fa-prescription-bottle-medical'></i></a>
+        <b> Prescriptions:</b>  {{ record.prescriptions.join(', ') }}, <br>
+        <a ><i style="color: #06a3da;" class='fa-solid fa-clock-rotate-left'></i></a>
+
+        <b> Treatment History:</b>  {{ record.treatment_history }}
+      </p>
+
+      <p>
+          <span style="color: #06a3da;"> <b> Appointments: </b></span>
+      </p>
+      <p *ngFor="let appointment of getAppointments(p.appointments)">
+          <a ><i style="color: #06a3da;" class='fa-solid fa-calendar-days'></i></a>
+          <b> Date:</b>  {{ appointment.appointment_date | date }}, <br>
+          <a ><i style="color: #06a3da;" class='fa-solid fa-person-dots-from-line'></i></a>
+          <b> Reason for Visit:</b> {{ appointment.reason_for_visit }}
+      </p>
+  </div>
+  <span class="sub-title" style="cursor: pointer; color: #06a3da;">
+    <a ><i style="color: #06a3da;" class='bx bx-phone-call'></i></a>
+    Contact number: {{ p.contactNumber }}
+  </span>
+  <span class="sub-title" style="cursor: pointer; color: #06a3da;">
+      <a ><i style="color: #06a3da;" class='fa-solid fa-cake-candles'></i></a>
+      Date of birth: {{ p.dateOfBirth }}
+    </span>  
+    <span class="sub-title" style="cursor: pointer; color: red;">
+      Delete
+      <i (click)="deletepatients(p.patientId)" class='fa-solid fa-trash' style="cursor: pointer; color: red;"></i>
+    </span>
+
+</div>
+
+      </div>
+      <div class="dentist-details-overview-content">
+        <hr style="color: blue;">
+    </div>
+    </div>
+</div>
+
