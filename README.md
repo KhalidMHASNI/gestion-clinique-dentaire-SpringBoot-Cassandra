@@ -1,4 +1,4 @@
-# gestion-clinique-dentaire-SpringBoot-Cassandra
+# Gestion-clinique-dentaire-SpringBoot-Cassandra 
 
 ## 1. Setting up Cassandra (3.11.10) on Windows(10 and 11) :
 
@@ -61,7 +61,7 @@ Firstly, we're going to create a springboot application in **https://start.sprin
     * Jakarta Persistence API 2.2.3 & 3.1.0
     * Eclipse Persistence Core 4.0.0
     * DataStax Java Driver Core 4.17.0 & Query Builder 4.17.0
-    * Cassandra Driver Core 3.4.0
+* Cassandra Driver Core 3.4.0
 
  After that we're going to add a configuration file (CassandraConfig.java), this class serves as a Spring configuration class responsible for setting up necessary configurations and beans required for integrating Cassandra with the Spring application. 
 
@@ -166,5 +166,3 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
    4. The application
      
 https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/d4beba2f-3670-411a-b859-63793e290235
-
-
