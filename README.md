@@ -126,4 +126,7 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
 
 ## 4. Test d'application
 
-Uploading SparkeSmile Clinic - Démo.mp4…
+
+https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/d4beba2f-3670-411a-b859-63793e290235
+
+
