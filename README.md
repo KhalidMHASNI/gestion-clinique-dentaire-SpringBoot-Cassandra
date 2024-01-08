@@ -74,7 +74,8 @@ After this we're going to make the architecture like so :
     │   │   └───org
     │   │       └───sid
     │   │           └───cabinet_medical_bigdata
-    │   │               │   CabinetMedicalBigdataApplication
+    │   │               │   CabinetMedicalBigdataApplication.java
+    │   │               │   CassandraConfig.java
     │   │               │   
     │   │               ├───controller
     │   │               │       PatientController.java
@@ -124,3 +125,5 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
 
 
 ## 4. Test d'application
+
+Uploading SparkeSmile Clinic - Démo.mp4…
