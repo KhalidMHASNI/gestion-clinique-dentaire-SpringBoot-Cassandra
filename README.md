@@ -118,9 +118,31 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
 
     ng new Medical-webapp
 
-3.3 Generate components (Example: home)
+3.3 Generate components (Example: home / header / add-patient)
 
     ng g c home 
+    ng g c header
+    ng g c add-patient
+
+3.4 Link with the API 
+
+  1. Create a new folder(test) inside the app (Example: .src/app/test)
+
+  2. Create a new (*.ts) files inside the folder (Example: src/app/test/doctor-service.service.ts)
+
+  3. Add to those files , (GET,POST,PUT,DELETE)mapping using API url
+
+     3.1 Example GET:
+       
+         public getDoctors(): Observable<Doctor[]> {
+                return this.http.get<Doctor[]>("http://localhost:8083/api/doctors").pipe(
+                  tap(data => console.log('Doctors:', data)),
+                  catchError(error => {
+                    console.error('Error fetching doctors:', error);
+                    return throwError(error);
+                  })
+                );
+              }
 
 
 ## 4. Test d'application
