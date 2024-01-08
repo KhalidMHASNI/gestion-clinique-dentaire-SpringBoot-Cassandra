@@ -158,10 +158,13 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
    2. Run it
 
           ng serve
+   
+   3. Use this link 
+
+          http://localhost:4200/
       
+   4. The application
      
-
-
 https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/d4beba2f-3670-411a-b859-63793e290235
 
 
