@@ -143,7 +143,12 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
                   })
                 );
               }
-
+     
+     3.2 Example DELETE:
+       
+           deleteDoctor(doctorId: any): Observable<any> {
+               return this.http.delete("http://localhost:8083/api/doctors/" + doctorId);
+               } 
 
 ## 4. Test d'application
 
