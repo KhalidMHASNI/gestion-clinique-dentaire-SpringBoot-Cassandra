@@ -152,6 +152,10 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
 
 ## 4. Test d'application
 
+4.1 Run the application
+
+   1. Go to the webapp folder (Example:Medical-webapp)
+
 
 https://github.com/KhalidMHASNI/gestion-clinique-dentaire-SpringBoot-Cassandra/assets/82038554/d4beba2f-3670-411a-b859-63793e290235
 
