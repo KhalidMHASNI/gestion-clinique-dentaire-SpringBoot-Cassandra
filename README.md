@@ -110,13 +110,13 @@ After setting up these architectures in both Cassandra Database and SpringBoot A
 
 ## 3. Linking the springBoot application with Angular (FE framework)
 
-3.1 Create the webapp 
+3.1 Install npm  
+
+    npm install 
+    
+3.2 Create the webapp
 
     ng new Medical-webapp
-    
-3.2 Install npm & save bootstrap-icons
-
-    npm install
 
 3.3 Generate components (Example: home)
 
