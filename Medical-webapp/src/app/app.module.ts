@@ -14,9 +14,6 @@ import { DentictsComponent } from './denticts/denticts.component';
 import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 import { BookingComponent } from './booking/booking.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ContactComponent } from './contact/contact.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
@@ -47,9 +44,6 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
     DoctorDetailsComponent,
     BookingComponent,
     TestimonialsComponent,
-    PrivacyComponent,
-    LoginComponent,
-    RegisterComponent,
     NotfoundComponent,
     ContactComponent,
     ServiceDetailsComponent,
