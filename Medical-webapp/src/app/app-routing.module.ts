@@ -8,10 +8,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DentictsComponent } from './denticts/denticts.component';
 import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { RegisterComponent } from './register/register.component';
 import { ServiceDetailsComponent } from './service-details/service-details.component';
 import { ServicesComponent } from './services/services.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
@@ -34,9 +31,6 @@ const routes: Routes = [
   {path:'booking' , component:BookingComponent},
   {path:'testimonials' , component:TestimonialsComponent},
   {path:'doctor_manage' , component:VaccineComponent},
-  {path:'privacy' , component:PrivacyComponent},
-  {path:'login' , component:LoginComponent},
-  {path:'register' , component:RegisterComponent},
   {path:'contact' , component:ContactComponent},
   {path:'**' , component:NotfoundComponent},
   {path:'notfound' , component:NotfoundComponent}
