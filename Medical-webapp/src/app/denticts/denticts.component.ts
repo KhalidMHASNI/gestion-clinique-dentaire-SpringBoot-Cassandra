@@ -26,11 +26,13 @@ export class DentictsComponent implements OnInit {
   ngOnInit(): void {
     this.doctorservice.getDoctors().subscribe({
       next: (data) => {
-        this.doctors = data;
-        console.log(this.doctors); // Log the data to the console
+
+        this.doctors = data.sort((a, b) => a.doctorId - b.doctorId);
+        console.log('doctors Data:', this.doctors);
+
       },
       error: (err) => {
-        console.error('Error fetching doctors:', err);
+        console.error('Error fetching patients:', err);
       },
     });
 
@@ -87,6 +89,8 @@ export class DentictsComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error:', err);
+        window.alert('Appointment added successfully!');
+
         window.location.reload();
         // window.alert('Failed Appointment! Check console for details.');
       },

@@ -41,7 +41,6 @@
                         </p>
 
                 </div>
-                
                 <span class="sub-title" style="cursor: pointer; color: #06a3da;">
                     <a routerLink="/home"><i style="color: #06a3da;" class='fa-solid fa-user-doctor'></i></a>
                     {{ d.specialization }}
@@ -63,32 +62,3 @@
     </div>
 </div>
 
-<!-- Include the form HTML content within the popup -->
-<!-- <div class="popup card" *ngIf="isFormOpen && d != null">
-    <div class="card-body">
-        <h4 class="bold-label custom-label">Update Doctor</h4>
-        <form #updateForm="ngForm" (ngSubmit)="updateDoctor(d.doctorId, updateForm)">
-            <div class="form-group">
-                <label for="updatedName">Updated Name</label>
-                <input type="text" class="form-control" id="updatedName" name="updatedName" ngModel required>
-            </div>
-
-            <div class="form-group">
-                <label for="updatedSpecialization">Updated Specialization</label>
-                <input type="text" class="form-control" id="updatedSpecialization" name="updatedSpecialization"
-                    ngModel required>
-            </div>
-
-            <div class="form-group">
-                <label for="updatedContactInformation">Updated Contact Information</label>
-                <input type="text" class="form-control" id="updatedContactInformation"
-                    name="updatedContactInformation" ngModel required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Update Doctor</button>
-        </form>
-    </div>
-    <div class="card-footer bg-transparent">
-        <button class="btn btn-outline-primary" (click)="closeForm()"><i class="bi bi-x"></i> Close</button>
-    </div>
-</div> -->

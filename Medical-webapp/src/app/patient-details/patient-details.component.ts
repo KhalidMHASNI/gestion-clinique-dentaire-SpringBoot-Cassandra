@@ -12,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
 export class PatientDetailsComponent implements OnInit {
   patients: Patient[] = [];
   doctors: Doctor[] = [];
-  images: number[] = [1, 2, 3, 4, 5]; 
+  images: number[] = [1,2,3,4,5]; 
   showPopup: boolean = false;
   doctorservice: any;
 
@@ -21,24 +21,29 @@ export class PatientDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.patientservice.getPatients().subscribe({
       next: (data) => {
-        this.patients = data;
-        console.log('Patients Data:', this.patients);
+        // this.patients = data;
+        // console.log('Patients Data:', this.patients);
+        // Sort patients by ID before assigning them
+      this.patients = data.sort((a, b) => a.patientId - b.patientId);
+      console.log('Patients Data:', this.patients);
+
       },
       error: (err) => {
         console.error('Error fetching patients:', err);
       },
     });
+
+    
+  }
+  getMedicalRecords(medicalRecords: { [key: string]: any }): any[] {
+    return medicalRecords ? Object.values(medicalRecords) : [];
+  }
+  
+  getAppointments(appointments: { [key: string]: any }): any[] {
+    return appointments ? Object.values(appointments) : [];
   }
   
   
-
-  getMedicalRecords(medicalRecords: any): any[] {
-    return Object.values(medicalRecords);
-  }
-
-  getAppointments(appointments: any): any[] {
-    return Object.values(appointments);
-  }
   // getDoctorName(doctorId: number): string {
   //   const doctor = this.doctors.find(d => d.doctorId === doctorId);
   //   return doctor ? doctor.name : 'Unknown Doctor';

@@ -58,59 +58,38 @@ export class AddPatientComponent implements OnInit{
     this.isFormOpen = false;
   }
   public newPatForm!: FormGroup;
+
   saveNewPatient() {
-    // Step 1: Get the list of existing patients
-    this.patientservice.getPatients().subscribe({
-      next: (patients: Patient[]) => {
-        // // Step 2: Find the maximum PatientId from the existing patients
-        // const maxpatientId = Math.max(...patients.map((pat) => pat.patientId), 1);
+    let name = this.newPatForm.get('name')?.value;
+    let dateOfBirth = this.newPatForm.get('dateOfBirth')?.value;
+    let contactNumber = this.newPatForm.get('contactNumber')?.value;
   
-        // // Step 3: Increment the maximum PatientId by 1 to get the next available ID
-        // const nextpatientId = maxpatientId + 1;
+    let patient: Patient = {
+      patientId: 0, // Set it to 0; the server will assign the correct ID
+      name: name,
+      dateOfBirth: dateOfBirth,
+      contactNumber: contactNumber,
+      doctorId: 0, // Set it to 0 or the default value
+      medicalRecords: {}, // Set it to an empty object or the default value
+      appointments: {}, // Set it to an empty object or the default value
+    };
   
-        // Step 4: Use the next available ID when saving the new patient
-        let patientId = this.newPatForm.get("patientId")?.value;
-        let name = this.newPatForm.get("name")?.value;
-        let dateOfBirth = this.newPatForm.get("dateOfBirth")?.value;
-        let contactNumber = this.newPatForm.get("contactNumber")?.value;
-        let appointments = this.newPatForm.get("appointments")?.value;
-        let doctorId = this.newPatForm.get("doctorId")?.value;
-        let medicalRecords = this.newPatForm.get("medicalRecords")?.value;
+    if (confirm('Are you sure you want to add this Patient?')) {
+      this.patientservice.savePatient(patient).subscribe({
+        next: (data: Patient) => {
+          this.savedPatient = data;
+          // Show success message
+          window.alert('Patient added successfully!');
   
-        let patient: Patient = {
-          patientId: patientId,
-          name: name,
-          dateOfBirth: dateOfBirth,
-          contactNumber: contactNumber,
-          doctorId:doctorId,
-          medicalRecords:medicalRecords,
-          appointments:appointments,
-        };
-        if (confirm("Are you sure you want to add this Patient?")) {
-          this.patientservice.savePatient(patient).subscribe({
-          
-            next: (data: Patient) => {
-              this.savedPatient = data;
-                        // Show success message
-            window.alert("Patient added successfully!");
-  
-            // Refresh the page
-            window.location.reload();
-            },
-            error: (err) => console.log(err),
-          });
-
-        }
-        
-      },
-      error: (err) => console.log(err),
-    });
-
+          // Refresh the page
+          window.location.reload();
+        },
+        error: (err) => console.log(err),
+      });
+    }
   }
   
-  
-
-
+    
 
   private initFormBuilder() {
     this.newPatForm = this.formBuilder.group({

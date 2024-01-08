@@ -27,10 +27,21 @@ export class DoctorDetailsComponent implements OnInit{
     });
   }
 
+
   ngOnInit(): void {
-    this.doctorservice.getDoctors().subscribe((doctors) => {
-      this.doctors = doctors;
+    this.doctorservice.getDoctors().subscribe({
+      next: (data) => {
+
+        this.doctors = data.sort((a, b) => a.doctorId - b.doctorId);
+        console.log('doctors Data:', this.doctors);
+
+      },
+      error: (err) => {
+        console.error('Error fetching patients:', err);
+      },
     });
+
+    
   }
 
   deleteDoctors(id: any) {
